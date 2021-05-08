@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <!-- <script src="F:\Css Notes Code with harry\Practise\calculator.js"></script> -->
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-image: linear-gradient(#c31432, #240b36);
+        height: 100vh;
+    }
+
+    .container {
+        /* background-image: linear-gradient(#d3cce3, #e9e4f0);
+         */
+        background-color: rgba(12, 11, 11, 0.89);
+        width: 300px;
+        height: 450px;
+        border-radius: 10px;
+        position: absolute;
+        top: 180px;
+        left: 500px;
+    }
+
+     .display {
+        border-radius: 5px;
+
+        margin-left: 12px;
+        margin-right: 12px;
+        width: 275px;
+        margin-top: 12px;
+        height: 80px;
+        
+    } 
+
+    .button {
+        padding: 20px 20px;
+        font-size: 20px;
+        height: 300px;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+
+        grid-gap: 20px 10px;
+    }
+
+    .text {
+
+        position: relative;
+        top: 50px;
+        float: right;
+        font-size: 25px;
+        font-weight: bolder;
+        padding-right: 10px;
+        padding-bottom: 20px;
+
+    }
+    
+    input[type=text] {
+    text-align: right;
+    width: 275px;
+    height: 80px;
+    font-size: 18px;
+    font-weight: bold;
+    /* padding-right: 2px; */
+    padding-bottom: 0px;
+    padding-right: 0px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="display"><input type="text" name="screen" id="screen">
+        </div>
+        <div class="button">
+            <button class="Ce">CE</button>
+            <button class="d">/</button>
+            <button class="m">x</button>
+            <button class="s">-</button>
+            <button class="seven">7</button>
+            <button class="eight">8</button>
+            <button class="nine">9</button>
+            <button class="p">+</button>
+            <button class="four">4</button>
+            <button class="five">5</button>
+            <button class="six">6</button>
+            <button class="per">%</button>
+            <button class="one">1</button>
+            <button class="two">2</button>
+            <button class="three">3</button>
+            <button class="eq">=</button>
+            <button class="zero">0</button>
+            <button class="dot">.</button>
+            <button class="Del">Del</button>
+            <button class="sq">Sqr</button>
+            
+        </div>
+
+    </div>
+
+</body>
+<script>let screen=document.querySelector("#screen");
+    button=document.querySelectorAll("button");
+    let screenvalue="";
+    for(let item of button)
+    {
+        item.addEventListener("click",(e)=>{
+             let buttontext=e.target.innerText;
+             if(buttontext=="x"){
+                 buttontext="*";
+                 screenvalue+=buttontext;
+                 screen.value+=screenvalue;
+             }
+            else if(buttontext=="Del"){
+                screenvalue="";
+                screen.value=screenvalue;
+            }
+            else if(buttontext=="="){
+                screen.value=eval(screenvalue);
+                let history=screen.value;
+            }
+            else if(buttontext=="CE"){
+                screenvalue=screenvalue.slice(0,screenvalue.length-1);
+                screen.value=screenvalue;
+            }
+             else if(buttontext=="Sqr")
+            {     
+             let n=Number(screenvalue.slice(screenvalue.length-1,2));
+                // let n=Numeber(screenvalue);          
+                screenvalue=String(Math.pow(n,2));
+                 screen.value=screenvalue;
+             }
+             
+            else{
+                screenvalue+=buttontext;
+                screen.value=screenvalue;
+            }
+        })
+        
+    }</script>
+</html>
